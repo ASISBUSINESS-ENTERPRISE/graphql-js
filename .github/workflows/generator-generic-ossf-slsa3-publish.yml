@@ -65,10 +65,10 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Find all built artifacts (npm tarballs and deno dist)
-          files=$(find dist -type f \( -name "*.tgz" -o -name "*.js" -o -name "*.d.ts" \) 2>/dev/null | sort)
+          # Find all built artifacts (npm and deno packages)
+          files=$(find npmDist denoDist -type f 2>/dev/null | sort)
           if [ -z "$files" ]; then
-            echo "Error: No artifacts found in dist directory"
+            echo "Error: No artifacts found in npmDist or denoDist directories"
             exit 1
           fi
 
